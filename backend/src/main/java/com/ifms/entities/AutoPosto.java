@@ -2,8 +2,6 @@ package com.ifms.entities;
 
 import java.io.Serializable;
 import java.util.List;
-
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,7 +39,6 @@ public class AutoPosto implements Serializable {
 	}
 	
 	public AutoPosto(Long id, String nomeFantasia, String telefone, String email, String cNPJ, String endereco) {
-		super();
 		this.id = id;
 		this.nomeFantasia = nomeFantasia;
 		this.telefone = telefone;
