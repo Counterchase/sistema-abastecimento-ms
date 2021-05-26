@@ -1,7 +1,6 @@
 package com.ifms.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,36 +8,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_Modelo")
-public class Modelo implements Serializable{
+@Table(name = "tb_modelo")
+public class Modelo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
-	
 	@ManyToOne
 	@JoinColumn(name = "id_marca_fk")
 	private Marca marca;
 	
-	@OneToMany(mappedBy = "modelo")
-	private List<Veiculo> veiculo;
-	
-	public Modelo() {
-		
-	}
+	public Modelo() {}
 
 	public Modelo(Long id, String descricao, Marca marca) {
 		this.id = id;
 		this.descricao = descricao;
 		this.marca = marca;
 	}
-	
 
 	public Long getId() {
 		return id;
@@ -62,14 +52,6 @@ public class Modelo implements Serializable{
 
 	public void setMarca(Marca marca) {
 		this.marca = marca;
-	}
-
-	public List<Veiculo> getVeiculo() {
-		return veiculo;
-	}
-
-	public void setVeiculo(List<Veiculo> veiculo) {
-		this.veiculo = veiculo;
 	}
 
 	@Override
@@ -97,9 +79,4 @@ public class Modelo implements Serializable{
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Modelo [descricao=" + descricao + "]";
-	}
-	
 }

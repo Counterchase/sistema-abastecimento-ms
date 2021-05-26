@@ -11,28 +11,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_Marca")
-public class Marca implements Serializable{
+@Table(name = "tb_marca")
+public class Marca implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String descricao;
-	
 	@OneToMany(mappedBy = "marca")
-	private List<Modelo> modelo;
+	private List<Modelo> modelos;
 	
-	
-	public Marca() {
-		
-	}
+	public Marca() {}
 
-	public Marca(Long id, String descricao, List<Modelo> modelo) {
+	public Marca(Long id, String descricao) {
 		this.id = id;
 		this.descricao = descricao;
-		this.modelo = modelo;
 	}
 
 	public Long getId() {
@@ -51,12 +44,12 @@ public class Marca implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public List<Modelo> getModelo() {
-		return modelo;
+	public List<Modelo> getModelos() {
+		return modelos;
 	}
 
-	public void setModelo(List<Modelo> modelo) {
-		this.modelo = modelo;
+	public void setModelos(List<Modelo> modelos) {
+		this.modelos = modelos;
 	}
 
 	@Override
@@ -83,11 +76,5 @@ public class Marca implements Serializable{
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Marca [descricao=" + descricao + "]";
-	}
-	
 	
 }

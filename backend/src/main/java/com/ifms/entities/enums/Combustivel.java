@@ -1,4 +1,4 @@
-package com.ifms.entities;
+package com.ifms.entities.enums;
 
 public enum Combustivel {
 	GASOLINA,

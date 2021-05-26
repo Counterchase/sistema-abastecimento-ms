@@ -1,64 +1,56 @@
 package com.ifms.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.ifms.entities.enums.Combustivel;
+
 @Entity
-@Table(name= "tb_Veiculo")
-public class Veiculo implements Serializable{
+@Table(name = "tb_veiculo")
+public class Veiculo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Integer ano;
 	private String placa;
-	private String renavam;
+	private String renavan;
 	private String patrimonio;
 	private String chassi;
 	private String versao;
-	private String capacidadeTanque;
+	@Column(name = "capacidade_tanque")
+	private Integer capacidadeTanque;
+	@Column(name = "tipo_combustivel")
+	@Enumerated(EnumType.ORDINAL)
 	private Combustivel tipoCombustivel;
 	@ManyToOne
 	@JoinColumn(name = "id_tipo_fk")
 	private Tipo tipo;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_modelo_fk")
-	private Modelo modelo;
-	
-	@ManyToMany
-	@JoinColumn(name = "id_lotacao_fk")
-	private List<Lotacao> lotacao;
-	
-	public Veiculo() {
-		// TODO Auto-generated constructor stub
-	}
+	public Veiculo() {}
 
-	public Veiculo(Long id, Integer ano, String placa, String renavam, String patrimonio, String chassi, String versao,
-			String capacidadeTanque, Combustivel tipoCombustivel, Tipo tipo, Modelo modelo, List<Lotacao> lotacao) {
-		
+	public Veiculo(Long id, Integer ano, String placa, String renavan, String patrimonio, String chassi, String versao,
+			Integer capacidadeTanque, Combustivel tipoCombustivel, Tipo tipo) {
 		this.id = id;
 		this.ano = ano;
 		this.placa = placa;
-		this.renavam = renavam;
+		this.renavan = renavan;
 		this.patrimonio = patrimonio;
 		this.chassi = chassi;
 		this.versao = versao;
 		this.capacidadeTanque = capacidadeTanque;
 		this.tipoCombustivel = tipoCombustivel;
 		this.tipo = tipo;
-		this.modelo = modelo;
-		this.lotacao = lotacao;
 	}
 
 	public Long getId() {
@@ -85,12 +77,12 @@ public class Veiculo implements Serializable{
 		this.placa = placa;
 	}
 
-	public String getRenavam() {
-		return renavam;
+	public String getRenavan() {
+		return renavan;
 	}
 
-	public void setRenavam(String renavam) {
-		this.renavam = renavam;
+	public void setRenavan(String renavan) {
+		this.renavan = renavan;
 	}
 
 	public String getPatrimonio() {
@@ -117,11 +109,11 @@ public class Veiculo implements Serializable{
 		this.versao = versao;
 	}
 
-	public String getCapacidadeTanque() {
+	public Integer getCapacidadeTanque() {
 		return capacidadeTanque;
 	}
 
-	public void setCapacidadeTanque(String capacidadeTanque) {
+	public void setCapacidadeTanque(Integer capacidadeTanque) {
 		this.capacidadeTanque = capacidadeTanque;
 	}
 
@@ -139,22 +131,6 @@ public class Veiculo implements Serializable{
 
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
-	}
-
-	public Modelo getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(Modelo modelo) {
-		this.modelo = modelo;
-	}
-
-	public List<Lotacao> getLotacao() {
-		return lotacao;
-	}
-
-	public void setLotacao(List<Lotacao> lotacao) {
-		this.lotacao = lotacao;
 	}
 
 	@Override
@@ -181,11 +157,5 @@ public class Veiculo implements Serializable{
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Veiculo [id=" + id + ", tipo=" + tipo + ", modelo=" + modelo + ", lotacao=" + lotacao + "]";
-	}
-	
 	
 }

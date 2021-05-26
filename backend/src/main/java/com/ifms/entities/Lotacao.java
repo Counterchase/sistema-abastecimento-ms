@@ -1,56 +1,53 @@
 package com.ifms.entities;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "tb_Lotacao")
-public class Lotacao implements Serializable{
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity
+@Table(name = "tb_lotacao")
+public class Lotacao implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String descricao;
-	private String endereco;
+	private String descricao;	
 	private String email;
 	private String site;
 	private String telefone;
-	
-	@ManyToMany(mappedBy = "lotacao")
-	private List<Veiculo> veiculo;
-	
+	private String endereco;
 	@ManyToOne
 	@JoinColumn(name = "id_cidade_fk")
 	private Cidade cidade;
+	@ManyToMany
+	@JoinTable(name = "tb_lotacao_veiculo", 
+		joinColumns = @JoinColumn(name = "lotacao_id"),
+		inverseJoinColumns = @JoinColumn(name = "veiculo_id"))
+	Set<Veiculo> veiculos = new HashSet<>();
 	
-	public Lotacao() {
-	
-	}
-	
+	public Lotacao() {}
 
-	public Lotacao(Long id, String descricao, String endereco, String email, String site, String telefone,
-			List<Veiculo> veiculo, Cidade cidade) {
-		
+	public Lotacao(Long id, String descricao, String email, String site, String telefone, String endereco,
+			Cidade cidade) {
 		this.id = id;
 		this.descricao = descricao;
-		this.endereco = endereco;
 		this.email = email;
 		this.site = site;
 		this.telefone = telefone;
-		this.veiculo = veiculo;
+		this.endereco = endereco;
 		this.cidade = cidade;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -66,14 +63,6 @@ public class Lotacao implements Serializable{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 
 	public String getEmail() {
@@ -100,12 +89,12 @@ public class Lotacao implements Serializable{
 		this.telefone = telefone;
 	}
 
-	public List<Veiculo> getVeiculo() {
-		return veiculo;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setVeiculo(List<Veiculo> veiculo) {
-		this.veiculo = veiculo;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public Cidade getCidade() {
@@ -116,6 +105,9 @@ public class Lotacao implements Serializable{
 		this.cidade = cidade;
 	}
 
+	public Set<Veiculo> getVeiculos() {
+		return veiculos;
+	}
 
 	@Override
 	public int hashCode() {
@@ -124,7 +116,6 @@ public class Lotacao implements Serializable{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -142,10 +133,5 @@ public class Lotacao implements Serializable{
 			return false;
 		return true;
 	}
-
-
-	@Override
-	public String toString() {
-		return "Lotacao [id=" + id + ", descricao=" + descricao + "]";
-	}
+	
 }
