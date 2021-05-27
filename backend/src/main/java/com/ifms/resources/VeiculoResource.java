@@ -15,43 +15,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.ifms.dto.AbastecimentoDTO;
-import com.ifms.services.AbastecimentoService;
+import com.ifms.dto.VeiculoDTO;
+import com.ifms.services.VeiculoService;
 
 @RestController
-@RequestMapping(value = "/abastecimentos")
-public class AbastecimentoResource {
+@RequestMapping(value = "/veiculos")
+public class VeiculoResource {
 	
 	@Autowired
-	private AbastecimentoService service;
+	private VeiculoService service;
 	
 	@GetMapping
-	public ResponseEntity<List<AbastecimentoDTO>> findAll(){
-		List<AbastecimentoDTO> lista = service.findAll();
+	public ResponseEntity<List<VeiculoDTO>> findAll(){
+		List<VeiculoDTO> lista = service.findAll();
 		return ResponseEntity.ok().body(lista);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<AbastecimentoDTO> findById(@PathVariable Long id){
-	AbastecimentoDTO dto = service.findById(id);
+	public ResponseEntity<VeiculoDTO> findById(@PathVariable Long id){
+	VeiculoDTO dto = service.findById(id);
 	return ResponseEntity.ok().body(dto);
 	}
 	
 	@PostMapping
-	public ResponseEntity<AbastecimentoDTO> insert(@RequestBody AbastecimentoDTO dto){
+	public ResponseEntity<VeiculoDTO> insert(@RequestBody VeiculoDTO dto){
 	dto = service.insert(dto);
 	 URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 	return ResponseEntity.created(uri).body(dto);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<AbastecimentoDTO> update(@PathVariable Long id, @RequestBody AbastecimentoDTO dto){
+	public ResponseEntity<VeiculoDTO> update(@PathVariable Long id, @RequestBody VeiculoDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<AbastecimentoDTO> delete(@PathVariable Long id){
+	public ResponseEntity<VeiculoDTO> delete(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

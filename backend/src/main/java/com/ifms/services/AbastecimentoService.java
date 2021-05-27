@@ -31,7 +31,7 @@ public class AbastecimentoService {
 	public AbastecimentoDTO findById(Long id) {
 		Optional<Abastecimento> obj = repository.findById(id);
 		Abastecimento Abastecimento = obj
-				.orElseThrow(() -> new ResourceNotFoundException("Abastecimento SOLICITADA NAO PODE SER ENCONTRADA!!"));
+				.orElseThrow(() -> new ResourceNotFoundException("Abastecimento nao foi encontrado!!"));
 		return new AbastecimentoDTO(Abastecimento);
 	}
 

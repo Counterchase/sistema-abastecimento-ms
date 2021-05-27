@@ -23,7 +23,7 @@ public class AbastecimentoDTO implements Serializable {
 	private AutoPosto autoposto;
 	private Veiculo veiculo;
 	
-	public AbastecimentoDTO() {
+	public void AbastecimentoDTO() {
 		
 	}
 
