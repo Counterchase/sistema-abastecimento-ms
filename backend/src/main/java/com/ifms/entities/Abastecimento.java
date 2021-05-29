@@ -28,7 +28,7 @@ public class Abastecimento implements Serializable {
 	@Column(name = "data_do_abastecimento", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant dataDoAbastecimento;
 	private Long quilometragem;
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	private Combustivel combustivel;
 	@Column(name = "quantidade_em_litros")
 	private Integer quantidadeEmLitros;

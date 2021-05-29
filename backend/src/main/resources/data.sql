@@ -60,8 +60,8 @@ VALUES
 
 INSERT INTO tb_veiculo (ano, placa, renavan, patrimonio, chassi, versao, capacidade_tanque, tipo_combustivel, id_tipo_fk)
 VALUES 
-(2016, 'ABC 1234', '123456789', 'XPTO789', '9 BW SU19F0 8 B302 158', 'Hillux 2.8 TDI SR CD 4x4 (aut)', 69, 5, 5),
-(2014, 'POI 7896', '987654321', 'XPTO123', '9 BW SU19F0 8 B302 158', 'Highline 2.0TDi 16v 4x4 C.D.', 69, 5, 5);
+(2016, 'ABC 1234', '123456789', 'XPTO789', '9 BW SU19F0 8 B302 158', 'Hillux 2.8 TDI SR CD 4x4 (aut)', 69, 'GASOLINA', 5),
+(2014, 'POI 7896', '987654321', 'XPTO123', '9 BW SU19F0 8 B302 158', 'Highline 2.0TDi 16v 4x4 C.D.', 69, 'GASOLINA', 5);
 
 INSERT INTO tb_lotacao (descricao, email, site, telefone, endereco, id_cidade_fk)
 VALUES 
@@ -71,4 +71,4 @@ INSERT INTO tb_lotacao_veiculo (lotacao_id, veiculo_id) VALUES (1, 1);
 
 INSERT INTO tb_abastecimento (cpf_motorista, data_do_abastecimento, quilometragem, combustivel, quantidade_em_litros, 
 valor_por_litro, id_autoposto_fk, id_veiculo_fk)
-VALUES ('123.456.789-99', TIMESTAMP WITH TIME ZONE '2020-07-14T10:00:00Z', 000456L, 5, 40, 3.50, 1, 2);
+VALUES ('123.456.789-99', TIMESTAMP WITH TIME ZONE '2020-07-14T10:00:00Z', 000456L, 'GASOLINA', 40, 3.50, 1, 2);
