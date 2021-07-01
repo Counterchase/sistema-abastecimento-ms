@@ -2,6 +2,12 @@ package com.ifms.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CNPJ;
+
 import com.ifms.entities.Cidade;
 import com.ifms.entities.AutoPosto;
 
@@ -9,9 +15,14 @@ public class AutoPostoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+	@Size(min = 8, max = 120, message = "tam min 8 e max 120 caractere")
+	@NotBlank(message = " o campo é obrigatório")
 	private String nomeFantasia;
+	@NotBlank(message = " o campo é obrigatório")
 	private String telefone;
+	@Email
 	private String email;
+	@CNPJ(message = "O CNPJ nao Existe")
 	private String CNPJ;
 	private String endereco;
 	private Cidade cidade;

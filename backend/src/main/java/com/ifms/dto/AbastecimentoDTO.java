@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.Instant;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.ifms.entities.Abastecimento;
 import com.ifms.entities.AutoPosto;
@@ -14,12 +17,17 @@ public class AbastecimentoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	@CPF
 	private String cpfMotorista;
 	private Instant dataDoAbastecimento;
+	@NotBlank
 	private Long quilometragem;
 	private Combustivel combustivel;
+	@NotBlank
 	private Integer quantidadeEmLitros;
+	@NotBlank
 	private Double valorPorLitro;
+	@NotBlank
 	private AutoPosto autoposto;
 	private Veiculo veiculo;
 	

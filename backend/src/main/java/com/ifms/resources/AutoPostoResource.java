@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class AutoPostoResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<AutoPostoDTO> insert(@RequestBody AutoPostoDTO dto){
+	public ResponseEntity<AutoPostoDTO> insert(@Valid @RequestBody AutoPostoDTO dto){
 	dto = service.insert(dto);
 	 URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 	return ResponseEntity.created(uri).body(dto);

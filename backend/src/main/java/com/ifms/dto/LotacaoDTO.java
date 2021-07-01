@@ -2,13 +2,16 @@ package com.ifms.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+
 import com.ifms.entities.Cidade;
 import com.ifms.entities.Lotacao;
 
 public class LotacaoDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private String descricao;	
+	private String descricao;
+	@Email
 	private String email;
 	private String site;
 	private String telefone;
